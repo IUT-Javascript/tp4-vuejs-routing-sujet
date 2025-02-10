@@ -28,12 +28,12 @@ function resetForm(){
 
 <template>
     <form @submit.prevent="addArticle">
-        <div>
+        <div class="form-group">
             <label>Title</label>
             <input type="text" v-model="title"/>
         </div>
 
-        <div>
+        <div class="form-group">
             <label>Description</label>
             <textarea v-model="description"></textarea>
         </div>
