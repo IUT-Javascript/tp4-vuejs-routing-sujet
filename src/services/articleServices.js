@@ -37,6 +37,13 @@ export function addArticle(article) {
     addArticleToApi(article).fetch();
 }
 
+export async function deleteArticledeleteArticleFromApi(id) {
+    const response = await fetch(url + '/' + id, {
+        method: 'DELETE'
+    });
+    console.log('Article deleted from API:', await response.json());
+}
+
 async function addArticleToApi(article) {
     const response = await fetch(url, {
         method: 'POST',

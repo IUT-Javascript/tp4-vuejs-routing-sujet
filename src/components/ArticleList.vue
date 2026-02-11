@@ -10,6 +10,12 @@ const articleList = ref([]);
 onMounted(async () => {
     articleList.value = await getArticles(); // On met à jour la valeur de articleList avec les articles reçus (bien penser au .value pour les refs)
 })
+
+function deleteArticle(id) {
+    console.log('Delete article with ID:', id);
+
+    deleteArticleFromApi(id).fetch(); // On appelle la fonction deleteArticleFromApi pour supprimer l'article de l'API 
+}  
 </script>
 
 <template>
@@ -19,6 +25,8 @@ onMounted(async () => {
     <ArticleItem 
         v-for="(article, index) in articleList" 
         :key="index" 
+        :id="article.id"
         :title="article.title" 
-        :description="article.description" />
+        :description="article.description"
+        @delete-article="deleteArticle" />
 </template>
