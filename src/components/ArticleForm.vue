@@ -1,43 +1,56 @@
 <script setup>
-const emit = defineEmits(['add-article']);
+import { COLOR_ERROR } from "@/constants/colors";
+import { reactive, ref } from "vue";
 
-const title = defineModel('title');
-const description = defineModel('description');
+const error = ref('');
+const emit = defineEmits(['addArticle']);
 
-function addArticle(){
-    if(!title.value || !description.value){
+const form = reactive({
+  title: '',
+  description: ''
+});
+
+function handleSubmit() {
+    console.log('Form submitted!', form);
+    error.value = '';
+
+    if(form.title.length < 3) {
+        error.value = 'Title must be at least 3 characters long.';
+        return;
+    }
+    
+    if(form.description.length < 10) {
+        error.value = 'Description must be at least 10 characters long.';
         return;
     }
 
+    // On émet un événement personnalisé 'addArticle' avec les données du formulaire 
     const article = {
-        title: title.value,
-        description: description.value
+        title: form.title,
+        description: form.description
     }
-
-    console.log('ArticleForm.addArticle', article);
-    emit('add-article', article);
-
-    resetForm();
-}
-
-function resetForm(){
-    title.value = '';
-    description.value = ''; 
+    emit('addArticle', article); 
+    // (en utilisant la syntaxe de décomposition pour créer une nouvelle copie de l'objet form)
+    //emit('addArticle', { ...form }); 
 }
 </script>
 
 <template>
-    <form @submit.prevent="addArticle">
-        <div class="form-group">
-            <label>Title</label>
-            <input type="text" v-model="title"/>
+    <p v-if="error" :style="{ color: COLOR_ERROR }">{{ error }}</p>
+
+    <form @submit.prevent="handleSubmit">
+        <div>
+            <label>Book title</label><br/>
+            <input type="text" v-model="form.title"/>
         </div>
 
-        <div class="form-group">
-            <label>Description</label>
-            <textarea v-model="description"></textarea>
+        <div>
+            <label>Book description</label><br/>
+            <textarea v-model="form.description"></textarea>
         </div>
 
-        <button type="submit">Add</button>
-    </form>
+        <input type="submit" value="Submit" />
+    </form> 
 </template>
+
+<style scoped></style>

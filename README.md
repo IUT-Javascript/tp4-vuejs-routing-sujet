@@ -1,22 +1,69 @@
-## Sujet du TP
+﻿# TP Vue.js - Mise en Place du Routage
 
-1) Mise en place du Router VueJs : https://router.vuejs.org/installation.html
+##  Objectifs
 
-2) Ajouter un composant NavBar qui affichera un lien "Ajouter un article" et un lien "Liste des articles"
+Dans ce TP, vous allez implémenter un système de routage avec Vue Router pour créer une application multi-pages de gestion d'articles.
 
-3) Au clic sur le lien "Ajouter un article", il faudra afficher le composant "ArticleForm" et gérer l'ajout d'un article sur l'API
+---
 
-4) Au clic sur le lien "Liste des articles", il faudra afficher le composant "ArticleList" et gérer l'affichage des articles depuis l'API
+##  Fonctionnalités à implémenter
 
-5) Modifier le composant "ArticleCard" pour ajouter un lien sur le titre de l'article qui va rediriger la page `/article/{id}`
+### 1 Mettre en place Vue Router
+- **Installation** : Intégrer Vue Router au projet
+- **Configuration** : Définir les routes et le mode routeur
+- **Documentation** : [Vue Router Installation](https://router.vuejs.org/installation.html)
 
-6) Créer un composant "ArticleDetail" qui s'affichera pour l'url `/article/{id}` qui affichera l'article dans son intégralité depuis l'API
+### 2 Créer une barre de navigation (NavBar)
+- **Liens** : Ajouter deux liens de navigation
+  - "Liste des articles"  Page d'affichage
+  - "Ajouter un article"  Formulaire d'ajout
+- **Placement** : Afficher la NavBar de manière persistante (en dehors du RouterView)
 
-7) Dans le composant "ArticleDetail", ajouter un bouton "Supprimer" qui fera permettra de supprimer l'article passé en paramètre dans l'API
+### 3 Implémenter la page "Ajouter un article"
+- **Route** : /articles/add
+- **Composant** : ArticleForm
+- **Fonctionnalité** : Afficher le formulaire et gérer l'ajout d'un article à l'API
+- **Redirection** : Retourner à la liste après submission
 
-## Ressources
+### 4 Implémenter la page "Liste des articles"
+- **Route** : / (route par défaut)
+- **Composant** : ArticleList
+- **Fonctionnalité** : Afficher tous les articles récupérés de l'API
 
-- Lien des slides : https://drive.google.com/drive/folders/1R6BkNNUlPlrSbfJyHJN7YgFyg-7p-65R?usp=drive_link
-- Lien vers la documentation : https://developer.mozilla.org/fr/docs/Web/JavaScript
-- Lien vers la documentation VueJs : https://vuejs.org/guide/introduction.html
-- Lien vers la documentation Router VueJs : https://router.vuejs.org/installation.html
+### 5 Ajouter les liens vers les détails
+- **Modifier** : Composant ArticleItem
+- **Action** : Ajouter un lien cliquable sur le titre de l'article
+- **Navigation** : Rediriger vers /articles/:id
+
+### 6 Créer la page de détail d'un article
+- **Route** : /articles/:id
+- **Composant** : ArticleDetail
+- **Contenu** : Afficher l'article complet récupéré de l'API
+
+### 7 Ajouter la suppression d'article
+- **Bouton** : Ajouter un bouton "Supprimer" sur la page de détail
+- **Action** : Au clic, supprimer l'article de l'API
+- **Redirection** : Retourner automatiquement à la liste après suppression
+
+---
+
+##  Ressources utiles
+
+| Sujet | Lien |
+|-------|------|
+| **Vue Router** | [Vue Router - Getting Started](https://router.vuejs.org/introduction.html) |
+| **Dynamic Route Matching** | [Vue Router - Dynamic Routes](https://router.vuejs.org/guide/essentials/dynamic-matching.html) |
+| **Programmatic Navigation** | [Vue Router - Navigation](https://router.vuejs.org/guide/essentials/navigation.html) |
+| **Vue.js Guide** | [Vue.js Documentation](https://vuejs.org/guide/introduction.html) |
+
+---
+
+##  Conseils
+
+-  Organisez vos routes dans main.js avec un tableau de configuration clair
+-  Utilisez 
+outer.push() pour les redirections après les actions
+-  Accédez aux paramètres de route avec 
+oute.params ou les props de route
+-  Vérifiez que l'API répond correctement avant de rediriger (surtout pour la suppression)
+-  Testez chaque route individuellement dans la barre d'adresse du navigateur

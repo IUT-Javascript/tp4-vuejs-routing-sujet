@@ -1,20 +1,24 @@
 <script setup>
-import { defineProps } from 'vue';
-import ArticleCard from './ArticleCard.vue';
+import { getArticles } from '@/services/articleServices';
+import { ref, onMounted } from 'vue';
+import ArticleItem from './ArticleItem.vue';
 
-defineProps({
-    articles: Array
-});
+const articleList = ref([]);
+
+// onMount est un élément du cycle de vie d'un composant Vue qui s'exécute une fois que le composant est monté dans le DOM.
+// C'est le moment pour effectuer des opérations asynchrones comme la récupération de données depuis une API.
+onMounted(async () => {
+    articleList.value = await getArticles(); // On met à jour la valeur de articleList avec les articles reçus (bien penser au .value pour les refs)
+})
 </script>
 
 <template>
-    <h3 v-if="articles.length">There are {{ articles.length }} articles</h3>
-
-    <ArticleCard v-if="articles.length" v-for="article in articles" 
-                    :key="article.title" 
-                    :article="article"/>  
-                    
-    <h3 v-else>
-        No articles
-    </h3>
+    <h2>Article List</h2>
+    
+    <!-- On boucle sur articleList via v-for -->
+    <ArticleItem 
+        v-for="(article, index) in articleList" 
+        :key="index" 
+        :title="article.title" 
+        :description="article.description" />
 </template>
