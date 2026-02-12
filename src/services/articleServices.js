@@ -34,7 +34,7 @@ export async function getArticles() {
 
 export function addArticle(article) {
     articles.value.unshift(article);
-    addArticleToApi(article).fetch();
+    addArticleToApi(article).then();
 }
 
 export async function deleteArticleFromApi(id) {

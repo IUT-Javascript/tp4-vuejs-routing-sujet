@@ -41,8 +41,6 @@ Dans ce TP, vous allez implémenter un système de routage avec Vue Router pour 
 - **Contenu** : Afficher l'article complet récupéré de l'API
 
 ### 7 Ajouter la suppression d'article
-- **Bouton** : Ajouter un bouton "Supprimer" sur la page de détail
-- **Action** : Au clic, supprimer l'article de l'API
 - **Redirection** : Retourner automatiquement à la liste après suppression
 
 ---
