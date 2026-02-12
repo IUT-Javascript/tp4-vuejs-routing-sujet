@@ -16,9 +16,10 @@ defineProps({
   }
 });
 
-function deleteArticle() {
+function handleDeleteArticle() {
   console.log('Delete article:', id);
 
+  //Kamel case
   emit('deleteArticle', id); // On émet un événement personnalisé 'deleteArticle' avec l'ID de l'article à supprimer
 }
 
@@ -28,6 +29,6 @@ function deleteArticle() {
     <article>
         <h3>{{ title }}</h3>
         <p>{{ description }}</p>
-        <button @click="deleteArticle">Delete</button>
+        <button @click="handleDeleteArticle">Delete</button>
     </article>
 </template>

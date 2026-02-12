@@ -1,5 +1,5 @@
 <script setup>
-import { getArticles } from '@/services/articleServices';
+import { getArticles, deleteArticleFromApi } from '@/services/articleServices';
 import { ref, onMounted } from 'vue';
 import ArticleItem from './ArticleItem.vue';
 
@@ -11,7 +11,7 @@ onMounted(async () => {
     articleList.value = await getArticles(); // On met à jour la valeur de articleList avec les articles reçus (bien penser au .value pour les refs)
 })
 
-function deleteArticle(id) {
+function handleDeleteArticle(id) {
     console.log('Delete article with ID:', id);
 
     deleteArticleFromApi(id).fetch(); // On appelle la fonction deleteArticleFromApi pour supprimer l'article de l'API 
@@ -28,5 +28,5 @@ function deleteArticle(id) {
         :id="article.id"
         :title="article.title" 
         :description="article.description"
-        @delete-article="deleteArticle" />
+        @delete-article="handleDeleteArticle" />
 </template>

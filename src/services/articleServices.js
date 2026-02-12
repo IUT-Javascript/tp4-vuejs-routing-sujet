@@ -37,11 +37,12 @@ export function addArticle(article) {
     addArticleToApi(article).fetch();
 }
 
-export async function deleteArticledeleteArticleFromApi(id) {
+export async function deleteArticleFromApi(id) {
     const response = await fetch(url + '/' + id, {
         method: 'DELETE'
     });
     console.log('Article deleted from API:', await response.json());
+    articles.value = articles.value.filter(a => a.id != id);
 }
 
 async function addArticleToApi(article) {
