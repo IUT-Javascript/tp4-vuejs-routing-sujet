@@ -14,7 +14,7 @@ onMounted(async () => {
 function handleDeleteArticle(id) {
     console.log('Delete article with ID:', id);
 
-    deleteArticleFromApi(id).fetch(); // On appelle la fonction deleteArticleFromApi pour supprimer l'article de l'API 
+    deleteArticleFromApi(id); // On appelle la fonction deleteArticleFromApi pour supprimer l'article de l'API 
 }  
 </script>
 
@@ -25,7 +25,7 @@ function handleDeleteArticle(id) {
     <ArticleItem 
         v-for="(article, index) in articleList" 
         :key="index" 
-        :id="article.id"
+        :idArticle="article.id"
         :title="article.title" 
         :description="article.description"
         @delete-article="handleDeleteArticle" />

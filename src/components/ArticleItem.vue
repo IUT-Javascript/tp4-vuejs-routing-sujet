@@ -1,8 +1,8 @@
 <script setup>
 const emit = defineEmits(['deleteArticle']);
 
-defineProps({
-  id : {
+const props = defineProps({
+  idArticle : {
     type: Number,
     required: true
   },
@@ -17,10 +17,10 @@ defineProps({
 });
 
 function handleDeleteArticle() {
-  console.log('Delete article:', id);
+  console.log('Delete article:', props.idArticle);
 
   //Kamel case
-  emit('deleteArticle', id); // On émet un événement personnalisé 'deleteArticle' avec l'ID de l'article à supprimer
+  emit('deleteArticle', props.idArticle); // On émet un événement personnalisé 'deleteArticle' avec l'ID de l'article à supprimer
 }
 
 </script>
